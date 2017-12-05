@@ -14,7 +14,7 @@ namespace WebScaper
 
             if (htmlDocument.DocumentNode != null)
             {
-                var articles = htmlDocument.DocumentNode.SelectNodes("//a[@class='storylink']");
+                HtmlNodeCollection articles = htmlDocument.DocumentNode.SelectNodes("//a[@class='storylink']");
 
                 foreach (HtmlNode node in articles)
                     Console.WriteLine(node.InnerText);

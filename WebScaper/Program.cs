@@ -12,24 +12,18 @@ namespace WebScaper
     {
         public static void Main(string[] args)
         {
-//            HtmlWeb htmlWeb = new HtmlWeb();
-//            HtmlDocument htmlDocument = htmlWeb.Load("https://news.ycombinator.com/");
-
-            const string filePath = @"/home/seth/careerDevs-i/RiderProjects/WebScaper/HackerNews.htm";
+            HtmlWeb htmlWeb = new HtmlWeb();
             HtmlDocument htmlDocument = new HtmlDocument();
-            htmlDocument.Load(filePath);
             
+            htmlDocument = htmlWeb.Load("https://news.ycombinator.com/");
+
             if (htmlDocument.DocumentNode == null)
                 Console.WriteLine("null document node!");
             
-            Console.WriteLine(htmlDocument.DocumentNode.InnerHtml);
+            var articles = htmlDocument.DocumentNode.SelectNodes("//a[@class='storylink']");
 
-//            var articles = htmlDocument.DocumentNode.SelectNodes("//a[@class='storylink']//a");
-//
-//            foreach (HtmlNode node in articles)
-//            {
-//                Console.WriteLine(node.ChildNodes[0].InnerHtml);
-//            }
+            foreach (HtmlNode node in articles)
+                Console.WriteLine(node.InnerText);
         }
     }
 }

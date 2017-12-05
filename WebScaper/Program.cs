@@ -12,13 +12,13 @@ namespace WebScaper
             
             htmlDocument = htmlWeb.Load("https://news.ycombinator.com/");
 
-            if (htmlDocument.DocumentNode == null)
-                Console.WriteLine("null document node!");
-            
-            var articles = htmlDocument.DocumentNode.SelectNodes("//a[@class='storylink']");
+            if (htmlDocument.DocumentNode != null)
+            {
+                var articles = htmlDocument.DocumentNode.SelectNodes("//a[@class='storylink']");
 
-            foreach (HtmlNode node in articles)
-                Console.WriteLine(node.InnerText);
+                foreach (HtmlNode node in articles)
+                    Console.WriteLine(node.InnerText);
+            }
         }
     }
 }
